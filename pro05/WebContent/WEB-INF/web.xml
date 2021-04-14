@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <servlet> <!-- web.xml 생성방법:프로젝트 선택 후 오른쪽 클릭/Java EE Tools/Generate Deployment Descriptor stub-->
+  	<servlet-name>aaa</servlet-name><!-- <servlet-mapping>태그의 <servlet-name>태그와 값이 동일함-->
+  	<servlet-class>sec01.ex01.FirstServlet</servlet-class><!-- 브라우저에서 요청하는 매핑 이름에 대해 실제 기능을 수행하는 서블릿클래스를 설정 -->
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>bbb</servlet-name><!-- 여러개의 서블릿 작성시 태그를 분리해서 작성해야함 -->
+  	<servlet-class>sec01.ex01.SecondServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping><!-- 브라우저에서 요청하는 논리적인 서블릿 설정 -->
+  	<servlet-name>aaa</servlet-name> <!-- aaa와 연결 -->
+  	<url-pattern>/first</url-pattern><!-- sec01.ex01.FirstServlet을 요청하는 논리적인 서블릿이름 -->
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>bbb</servlet-name>
+  	<url-pattern>/second</url-pattern>
+  </servlet-mapping>
+</web-app>
