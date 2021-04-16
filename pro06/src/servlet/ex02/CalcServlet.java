@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  * Servlet implementation class CalcServlet
@@ -46,14 +47,20 @@ public class CalcServlet extends HttpServlet {
 		
 		
 		
-		if (command != null && command
-				.equals("calculate")) { /* 최초 요청시 command가 null 이면 계산기 화면을 출력, command 값이 calculate 이면 계산결과 출력 */
-			String result=calculate(Float.parseFloat(won),operator);
-			pw.print("<html><font size=10>변환 결과</font><br>");
-			pw.print("<html><font size=10>"+result+"</font><br>");
-			pw.print("<a href='/pro06/calc'>환율 계산기</a>");
-			return;	
-		} /* 문제점:입력하지 않은 상태 null 이거나 문자를 입력하였을 경우 오류발생 해결방법 필요함 */
+		try {
+			if (command != null && command
+					.equals("calculate")) { /* 최초 요청시 command가 null 이면 계산기 화면을 출력, command 값이 calculate 이면 계산결과 출력 */
+				String result=calculate(Float.parseFloat(won),operator);
+				pw.print("<html><font size=10>변환 결과</font><br>");
+				pw.print("<html><font size=10>"+result+"</font><br>");
+				pw.print("<a href='/pro06/calc'>환율 계산기</a>");
+				return;	
+			} /* 문제점:입력하지 않은 상태 null 이거나 문자를 입력하였을 경우 오류발생 해결방법 필요함 */
+		} catch (NumberFormatException e) {
+			JOptionPane aa=new JOptionPane();
+			aa.showMessageDialog(null, "잘못된 입력입니다. 다시 입력해주세요.");
+			/* pw.print("<a herf='/pro06/calc'>환율 계산기</a>"); */
+		}
 		
 			
 		
