@@ -1,4 +1,4 @@
-package dbserv.ex01;
+package dbserv02.ex01;
 
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberServlet
  */
-/* @WebServlet("/member") */
+/* @WebServlet("/member2") */
 public class MemberServlet extends HttpServlet {
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -47,52 +47,6 @@ public class MemberServlet extends HttpServlet {
 		out.print("<td>아이디</td><td>비밀번호</td><td>이름</td><td>이메일</td><td>가입일</td></tr>");
 		
 		for (int i = 0; i < list.size(); i++) { /* 조회한 회원 정보를 for문과 <tr>태그를 이용해 리스트로 출력 */
-			MemberVO memberVO=(MemberVO)list.get(i);
-			String id=memberVO.getId();
-			String pwd=memberVO.getPwd();
-			String name=memberVO.getName();
-			String email=memberVO.getEmail();
-			Date joinDate=memberVO.getJoinDate();
-			out.print("<tr><td>"+id+"</td><td>"+pwd+"</td><td>"
-					+ name+"</td><td>"+email+"</td><td>"
-					+joinDate+"</td></tr>");
-		}
-		out.print("</table></body></html>");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	/* doPost로 실행을 원할 때엔 html 문서를 생성하여 연동해야한다. */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
-		String command=request.getParameter("command");
-		MemberDAO dao=new MemberDAO();
-		MemberVO vo=new MemberVO();
-		
-		if (command==null&&command.isEmpty()) {
-			String _id=request.getParameter("id");
-			String _pwd=request.getParameter("pwd");
-			String _name=request.getParameter("name");
-			String _email=request.getParameter("email");
-			
-			
-			vo.setId(_id);
-			vo.setPwd(_pwd);
-			vo.setName(_name);
-			vo.setEmail(_email);
-			
-			dao.listMembers(vo);
-		}
-		
-		List<MemberVO> list=dao.listMembers(vo);
-		
-		out.print("<html><body>");
-		out.print("<table border=1><tr align='center' bgcolor='lightgreen'>");
-		out.print("<td>아이디</td><td>비밀번호</td><td>이름</td><td>이메일</td><td>가입일</td></tr>");
-		
-		for (int i=0;i<list.size();i++) {
 			MemberVO memberVO=(MemberVO)list.get(i);
 			String id=memberVO.getId();
 			String pwd=memberVO.getPwd();

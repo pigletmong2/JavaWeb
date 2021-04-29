@@ -1,4 +1,4 @@
-package dbserv.ex01;
+package dbserv.ex02;
 
 
 import java.io.IOException;
